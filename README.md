@@ -1,4 +1,4 @@
-# ASL Learning Web Application
+# Sign Savvy --> An ASL Learning Web Application
 
 An interactive web application designed to help users learn American Sign Language (ASL) through a structured curriculum of greetings and helpful phrases, featuring video tutorials, interactive quizzes, and progress tracking.
 
