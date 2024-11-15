@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<script type="text/javascript" src="{{ url_for('static', filename = 'quiz.js') }}"></script>
+
+{% if question_num %}
+
+<script>
+    let question = {{question|tojson}}
+</script>
+
+<style>
+    label{
+        vertical-align: bottom;
+    }
+</style>
+
+<div class="container mt-3 text-center">
+    <h4 id="quiz_ques" class="mb-5"></h4>
+    {% if question["if_multiple_choice"] == "true" %}
+    <div class="row">
+        {% if question["images"]|length != 0 %}
+        <div class="col-6">
+            <img id="ques_img" class="img-responsive img-fluid">
+        </div>
+        {% endif %}
+        <div class="col-6" style="margin: auto;">
+            <div class="row">
+
+                <div class="col-10 d-flex flex-wrap ">
+                    <div id="ans_choices" class="fs-5 text-left">
+                    </div>
+
+                    <p id="feedback" class="alert alert-info" style="display:none;"></p>
+
+                </div>
+
+                <div class="col-12">
+                    <div class="row">
+                        <br>
+
+                    </div>
+                    <div class="row d-flex flex-wrap justify-content-right">
+                        <button id="submit_ans" class="btn greeting-btn" disabled>Submit</button>
+                        <button id="nextQuestion" class="btn custom-button" style="display:none; border-radius: 15px">Next</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% else %}
+<div class="row">
+    <div class="col-6">
+        <div id="imgs_drag"></div>
+    </div>
+    <div class="col-6 dropped" id="droppable" style="border-radius:20px ">
+        <p>Drag here!</p>
+    </div>
+    <!-- Feedback and Next Button elements -->
+    <div class="col-12 mt-3">
+        <p id="drag_feedback" class="alert alert-info" style="display:none;"></p>
+        <button id="drag_nextQuestion" class="btn custom-button" style="display:none;">Next</button>
+    </div>
+</div>
+{% endif %}
+</div>
+
+{% else %}
+<div class="container mt-3 text-center">
+    <h2>Test Your Knowledge!</h2>
+    <!-- Start Quiz button with a custom color -->
+    <button type="button" id="startQuiz" class="btn btn-lg mt-4 custom-button">Start Quiz</button>
+</div>
+{% endif %}
+{% endblock %}
